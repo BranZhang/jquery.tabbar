@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+		<link rel="stylesheet" href="jquery.tabbar.css">
+		<script src="jquery-1.8.3.min.js"></script>
+		<script src="jquery.tabbar.js"></script>
+		<script>
+		$(function ()
+		{
+			$('#tabbar').Tabbar().setListener(function (event, index)
+			{
+				var hoge = $('#hoge');
+				
+				switch (index)
+				{
+					case 0: hoge.append('tab1<br>'); break;
+					case 1: hoge.append('tab2<br>'); break;
+					case 2: hoge.append('tab3<br>'); break;
+					case 3: hoge.append('tab4<br>'); break;
+					case 4: hoge.append('tab5<br>'); break;
+				}
+			})
+			.setUI(['tab1', 'tab2', 'tab3', 'tab4', 'tab5'],
+				['img.png', 'img.png', 'img.png', 'img.png', 'img.png'], 0);
+		});
+		</script>
+	</head>
+	<body>
+		<div class="htz-tabview">
+			<h1>jQuery TabBar</h1>
+			<div id="hoge"></div>
+		</div>
+		<div class="htz-tabbar" id="tabbar"></div>
+	</body>
+</html>

@@ -1,5 +1,5 @@
 /*
- * ver.0.2.5
+ * ver.0.2.6
  *
  * jquery.tabbar
  * Require jQuery ver.1.7 or higher.
@@ -10,23 +10,23 @@ $.fn.Tabbar = $.fn.Tabbar || function ()
 {
 	var self = this;	// jQuery object
     
-    var addOnTapTabEventListener = function (tabbar, tabId, index)
-    {
-        // 'touchstart' is faster than 'click' event.
-        // But 'touchstart' event is only for smartphone. This code can be run on both smartphone and PC.
+	var addOnTapTabEventListener = function (tabbar, tabId, index)
+	{
+		// 'touchstart' is faster than 'click' event.
+		// But 'touchstart' event is only for smartphone. This code can be run on both smartphone and PC.
 		var eventName = ('ontouchstart' in document) ? 'touchstart' : 'click';
-        $('div').on(eventName, tabId, function ()
+		$('div').on(eventName, tabId, function ()
 		{
 			// Throw index of tapped tab to tabbar's event handler.
-            tabbar.tab(index).fire(index);
+			tabbar.tab(index).fire(index);
 		});
-    };
+	};
 	
 	// Return Tabbar object.
 	return {
 		// Variables:
 		$tabs   : [],
-        curIndex: 0,
+		curIndex: 0,
 		
 		// Functions:
 		setUI: function (labels, imgs, firstTab)
@@ -34,7 +34,7 @@ $.fn.Tabbar = $.fn.Tabbar || function ()
 			for (var i = 0, l = labels.length, w = 100 / l; i < l; i++)
 			{
 				// Prevent conflict ids.
-				var tabId = 'htz-tab' + new Date().getTime();
+				var tabId = 'htz-tab' + i + new Date().getTime();
 				// Make and append each of tabs.
 				var html = [];
 				html.push('<div class="htz-tab-deactive" id="');
@@ -56,36 +56,36 @@ $.fn.Tabbar = $.fn.Tabbar || function ()
 				// Create jQuery objects of tabs.
 				var _tabId = '#' + tabId;
 				this.$tabs.push($(_tabId));
-                // Tabs' event handler.
-                addOnTapTabEventListener(this, _tabId, i);
+				// Tabs' event handler.
+				addOnTapTabEventListener(this, _tabId, i);
 			}
 			// Highlight a first tab.
-            firstTab = firstTab || 0;
+			firstTab = firstTab || 0;
 			this.tab(firstTab).fire(firstTab);
 			// Return this Tabbar object.
 			return this;
 		},
-        setListener: function (callback)    // callback(event, index)
+		setListener: function (callback)    // callback(event, index)
 		{
 			self.on('htzTap', callback);
 			return this;
 		},
-        tab: function (i)
-        {
-            // Deactive a current tab.
-            this.$tabs[this.curIndex].addClass('htz-tab-deactive');
+		tab: function (i)
+		{
+			// Deactive a current tab.
+			this.$tabs[this.curIndex].addClass('htz-tab-deactive');
 			this.$tabs[this.curIndex].removeClass('htz-tab-active');
 			// Active a next tab.
 			this.$tabs[i].removeClass('htz-tab-deactive');
 			this.$tabs[i].addClass('htz-tab-active');
 			this.curIndex = i;
 			return this;
-        },
-        fire: function (i)
-        {
-            // Fire event.
-            self.trigger('htzTap', [i]);
-            return this;
-        }
+		},
+		fire: function (i)
+		{
+			// Fire event.
+			self.trigger('htzTap', [i]);
+			return this;
+		}
 	};
 };
