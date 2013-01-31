@@ -1,0 +1,65 @@
+/*
+ * ver.0.2.4
+ *
+ * jquery.tabbar
+ *
+ * Written by Hituzi Ando.
+ */
+
+.htz-tabview
+{
+	margin-bottom: 49px;
+	z-index      : 0;
+}
+		
+.htz-tabbar
+{
+	background: -webkit-gradient(linear, left top, left bottom, from(#222), to(#000));
+	width     : 100%;
+	height    : 49px;
+	position  : fixed;
+	bottom    : 0px;
+	left      : 0px;
+	box-shadow: 0px -1px 1px rgba(0, 0, 0, 0.5);
+	border-top: solid 1px #222;
+	z-index   : 10;
+}
+		
+.htz-tab
+{
+	height         : 49px;
+	position       : fixed;
+	bottom         : 0px;
+	color          : #fff;
+	text-align     : center;
+	font-size      : 11px;
+	font-weight    : bold;
+	font-family    : Helvetica, Arial, sans-serif;
+	text-shadow    : 0px 1px 0px #000;
+	text-decoration: none;
+	z-index        : 11;
+}
+		
+.htz-tab-img
+{
+	width        : 26px;
+	height       : 26px;
+	padding-top  : 3px;
+	z-index      : 12;
+}
+
+.htz-tab-active
+{
+	background  : -webkit-gradient(linear, left top, left bottom, from(#000), to(#333));
+	/* for applying background */
+	position    : absolute;
+	bottom      : 0px;
+	height      : 49px;
+	border-right: solid 1px #252525;
+	border-left : solid 1px #252525;
+}
+
+.htz-tab-deactive
+{
+	opacity: 0.3;
+}
