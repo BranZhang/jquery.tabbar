@@ -1,5 +1,5 @@
 /*
- * ver.0.2.6
+ * ver.0.2.8
  *
  * jquery.tabbar
  * Require jQuery ver.1.7 or higher.
@@ -61,13 +61,13 @@ $.fn.Tabbar = $.fn.Tabbar || function ()
 			}
 			// Highlight a first tab.
 			firstTab = firstTab || 0;
-			this.tab(firstTab).fire(firstTab);
+			this.tab(firstTab);
 			// Return this Tabbar object.
 			return this;
 		},
 		setListener: function (callback)    // callback(event, index)
 		{
-			self.on('htzTap', callback);
+			$(document).on('htzTap', self.selector, callback);
 			return this;
 		},
 		tab: function (i)
