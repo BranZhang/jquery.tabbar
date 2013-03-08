@@ -1,5 +1,5 @@
 /*
- * ver.0.2.8
+ * ver.0.2.9
  *
  * jquery.tabbar
  * Require jQuery ver.1.7 or higher.
@@ -17,8 +17,13 @@ $.fn.Tabbar = $.fn.Tabbar || function ()
 		var eventName = ('ontouchstart' in document) ? 'touchstart' : 'click';
 		$('div').on(eventName, tabId, function ()
 		{
-			// Throw index of tapped tab to tabbar's event handler.
-			tabbar.tab(index).fire(index);
+			// If current index is equal to new index, tabs are not changed.
+			if (tabbar.curIndex !== index)
+			{
+				tabbar.prevIndex = index;
+				// Throw index of tapped tab to tabbar's event handler.
+				tabbar.tab(index).fire(index);
+			}
 		});
 	};
 	
@@ -26,8 +31,8 @@ $.fn.Tabbar = $.fn.Tabbar || function ()
 	return {
 		// Variables:
 		$tabs   : [],
-		curIndex: 0,
-		
+		curIndex: -1,
+
 		// Functions:
 		setUI: function (labels, imgs, firstTab)
 		{
@@ -72,10 +77,13 @@ $.fn.Tabbar = $.fn.Tabbar || function ()
 		},
 		tab: function (i)
 		{
-			// Deactive a current tab.
-			this.$tabs[this.curIndex].addClass('htz-tab-deactive');
-			this.$tabs[this.curIndex].removeClass('htz-tab-active');
-			// Active a next tab.
+			// Deactivate a current tab.
+			if (this.curIndex !== -1)
+			{
+				this.$tabs[this.curIndex].addClass('htz-tab-deactive');
+				this.$tabs[this.curIndex].removeClass('htz-tab-active');
+			}
+			// Activate a next tab.
 			this.$tabs[i].removeClass('htz-tab-deactive');
 			this.$tabs[i].addClass('htz-tab-active');
 			this.curIndex = i;
