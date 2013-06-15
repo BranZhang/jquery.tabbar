@@ -1,7 +1,7 @@
 jQuery TabBar
 ======================
 HTML/Javascript/CSSでタブバーを生成するjQueryプラグインです。  
-サンプルは[こちら](http://180.235.252.88/github/tabbar/sample.html)。
+サンプルは[こちら](http://hituzi-ando.sakura.ne.jp/github/tabbar/sample.html)。
 
 必要なjQueryバージョン: 1.7+
 
